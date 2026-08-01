@@ -1,4 +1,4 @@
-# contributing to cobalt
+# contributing to cobalt,
 if you're reading this, you are probably interested in contributing to cobalt, which we are very thankful for :3
 
 this document serves as a guide to help you make contributions that we can merge into the cobalt codebase.
