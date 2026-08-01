@@ -58,4 +58,4 @@ cobalt is sponsored by [royalehosting.net](https://royalehosting.net/?partner=co
 
 ### licenses
 for relevant licensing information, see the [api](api/README.md) and [web](web/README.md) READMEs.
-unless specified otherwise, the remainder of this repository is licensed under [AGPL-3.0](LICENSE).
+unless specified .otherwise, the remainder of this repository is licensed under [AGPL-3.0](LICENSE).
