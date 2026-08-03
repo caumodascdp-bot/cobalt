@@ -20,11 +20,12 @@ WORKDIR /app
 COPY --from=build --chown=node:node /prod/api /app
 COPY --from=build --chown=node:node /app/.git /app/.git
 
-# --- ADICIONE ESTA LINHA AQUI ---
-RUN mkdir -p cookies && ln -s /etc/secrets/youtube.txt cookies/youtube.txt && chown -R node:node cookies
-# --------------------------------
+# Cria a pasta de cookies e ajusta as permissões para o usuário node
+RUN mkdir -p cookies && chown -R node:node cookies
 
 USER node
 
 EXPOSE 9000
-CMD [ "node", "src/cobalt" ]
+
+# Copia o arquivo secreto do Render para a pasta cookies na hora do boot e inicia a API
+CMD ["/bin/sh", "-c", "cp /etc/secrets/youtube.txt cookies/youtube.txt || true && node src/cobalt"]
