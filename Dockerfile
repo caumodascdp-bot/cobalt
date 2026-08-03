@@ -20,6 +20,10 @@ WORKDIR /app
 COPY --from=build --chown=node:node /prod/api /app
 COPY --from=build --chown=node:node /app/.git /app/.git
 
+# --- ADICIONE ESTA LINHA AQUI ---
+RUN mkdir -p cookies && ln -s /etc/secrets/youtube.txt cookies/youtube.txt && chown -R node:node cookies
+# --------------------------------
+
 USER node
 
 EXPOSE 9000
