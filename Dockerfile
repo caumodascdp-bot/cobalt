@@ -18,7 +18,6 @@ FROM base AS api
 WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
-COPY --from=build --chown=node:node /app/.git /app/.git
 
 # Cria a pasta de cookies e ajusta as permissões para o usuário node
 RUN mkdir -p cookies && chown -R node:node cookies
