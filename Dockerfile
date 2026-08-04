@@ -28,4 +28,4 @@ USER node
 EXPOSE 9000
 
 # Copia o arquivo secreto do Render para a pasta cookies na hora do boot e inicia a API
-CMD ["/bin/sh", "-c", "cp /etc/secrets/youtube.txt cookies/youtube.txt || true && node src/cobalt"]
+CMD ["node", "start.js"]
