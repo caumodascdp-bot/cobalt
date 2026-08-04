@@ -18,12 +18,16 @@ const findFile = (file) => {
 const root = findFile('.git');
 const pack = findFile('package.json');
 
-const readGit = (filename) => {
+const readGit = async (filename) => {
     if (!root) {
-        throw 'no git repository root found';
+        return '';
     }
 
-    return readFile(join(root, filename), 'utf8');
+    try {
+        return await readFile(join(root, filename), 'utf8');
+    } catch {
+        return '';
+    }
 }
 
 export const getCommit = async () => {
@@ -62,21 +66,20 @@ export const getRemote = async () => {
 
     remote = remote?.replace(/\.git$/, '');
 
-    if (!remote) {
-        throw 'could not parse remote';
-    }
-
-    return remote;
+    return remote || '';
 }
 
 export const getVersion = async () => {
     if (!pack) {
-        throw 'no package root found';
+        return '';
     }
 
-    const { version } = JSON.parse(
-        await readFile(join(pack, 'package.json'), 'utf8')
-    );
-
-    return version;
+    try {
+        const { version } = JSON.parse(
+            await readFile(join(pack, 'package.json'), 'utf8')
+        );
+        return version;
+    } catch {
+        return '';
+    }
 }
